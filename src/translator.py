@@ -45,6 +45,21 @@ def get_language(post: str) -> str:
     # Extract and return the language identification result
     return response.choices[0].message.content.strip()
 
+def get_llm_response(prompt: str, deployment_name: str) -> str:
+    try:
+        # Create the request to the LLM
+        response = openai.ChatCompletion.create(
+            engine=deployment_name,
+            messages=[
+                {"role": "system", "content": "You are a helpful assistant."},
+                {"role": "user", "content": prompt}
+            ]
+        )
+        
+        return response.choices[0].message.content.strip()
+    except openai.error.OpenAIError as e:
+        return f"An error occurred: {e}"
+
 
 def query_llm(post: str) -> tuple[bool, str]:
     # Translate the non-English post to English using OpenAI API
