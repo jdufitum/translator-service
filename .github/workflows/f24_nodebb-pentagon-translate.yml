@@ -62,6 +62,6 @@ jobs:
         uses: azure/webapps-deploy@v2
         id: deploy-to-webapp
         with:
-          app-name: 'pentagon-translator'
+          app-name: 'nodebb-pentagon-translate'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_58AF70611E3C4EDA85339BC2CEFCA260 }}
