@@ -7,7 +7,14 @@ def test_chinese():
     assert translated_content == "This is a Chinese message"
 
 def test_llm_normal_response():
-    pass
+    query = "What is the capital of France?"
+    response = get_llm_response(query)
+    assert response is not None
+    assert "paris" in response.lower()
+
 
 def test_llm_gibberish_response():
-    pass
+    is_english, translated_content = translate_content("asdflkjqweoirut!")
+    assert is_english == False
+    assert translated_content == 'Unintelligible content'
+    
